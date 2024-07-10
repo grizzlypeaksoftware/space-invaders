@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JavaScript Invaders</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Cortex Invaders</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <style>
@@ -58,12 +58,94 @@
         footer a:hover {
             color: #00ff00;
         }
+        #mobileControls {
+            display: none;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .control-btn {
+            display: inline-block;
+            width: 60px;
+            height: 60px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border: 2px solid #00ff00;
+            border-radius: 50%;
+            margin: 0 10px;
+            font-size: 24px;
+            line-height: 60px;
+            color: #00ff00;
+            user-select: none;
+        }
+        
+        @media (max-width: 800px) {
+            .game-title {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+            #gameCanvas {
+                width: 100%;
+                height: auto;
+                max-width: 400px;
+                max-height: 300px;
+            }
+            #mobileControls {
+                display: block;
+            }
+            .content {
+                padding-top: 10px;
+            }
+            footer {
+                padding: 10px;
+            }
+            footer a {
+                font-size: 20px;
+            }
+        }
+
+        @media (max-width: 800px) and (orientation: landscape) {
+            body {
+                flex-direction: row;
+            }
+            .content {
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+                width: 100%;
+                padding: 10px;
+            }
+            .game-title {
+                font-size: 18px;
+                writing-mode: vertical-rl;
+                text-orientation: upright;
+                margin: 0 10px;
+            }
+            #gameCanvas {
+                max-width: 60%;
+                max-height: 90vh;
+            }
+            #mobileControls {
+                display: flex;
+                flex-direction: column;
+                padding: 0 10px;
+            }
+            .control-btn {
+                margin: 5px 0;
+            }
+            footer {
+                display: none;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="content">
-        <h1 class="game-title">Cortex Invaders</h1>
+        <h1 class="game-title">JavaScript Invaders</h1>
         <canvas id="gameCanvas" width="800" height="600"></canvas>
+        <div id="mobileControls">
+            <div id="leftBtn" class="control-btn">&lt;</div>
+            <div id="fireBtn" class="control-btn">Fire</div>
+            <div id="rightBtn" class="control-btn">&gt;</div>
+        </div>
     </div>
     
     <footer>

@@ -33,6 +33,10 @@ let gameIsOver = false;
 
 let explosions = [];
 
+// Touch control variables
+let touchLeft = false;
+let touchRight = false;
+
 function createEnemies() {
     enemies = [];
     for (let i = 0; i < enemyRows; i++) {
@@ -200,10 +204,10 @@ function gameLoop() {
     
     if (!gameIsOver) {
         // Update player position
-        if (player.moving.left && player.x > 0) {
+        if ((player.moving.left || touchLeft) && player.x > 0) {
             player.x -= player.speed;
         }
-        if (player.moving.right && player.x < canvas.width - player.width) {
+        if ((player.moving.right || touchRight) && player.x < canvas.width - player.width) {
             player.x += player.speed;
         }
         
@@ -267,22 +271,7 @@ function gameLoop() {
     requestAnimationFrame(gameLoop);
 }
 
-// Event listeners
-canvas.addEventListener('click', (e) => {
-    if (gameIsOver) {
-        const rect = canvas.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        // Check if click is on the "Play Again" button
-        if (x >= canvas.width / 2 - 60 && x <= canvas.width / 2 + 60 &&
-            y >= canvas.height / 2 + 40 && y <= canvas.height / 2 + 80) {
-            resetGame();
-        }
-    }
-});
-
-// Event listeners
+// Event listeners for keyboard controls
 document.addEventListener('keydown', e => {
     if (e.key === 'ArrowLeft' || e.key === 'ArrowRight' || e.key === ' ') {
         e.preventDefault(); // Prevent default scrolling behavior
@@ -308,6 +297,66 @@ window.addEventListener('keydown', function(e) {
         e.preventDefault();
     }
 });
+
+// Touch control event listeners
+document.getElementById('leftBtn').addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    touchLeft = true;
+});
+
+document.getElementById('leftBtn').addEventListener('touchend', (e) => {
+    e.preventDefault();
+    touchLeft = false;
+});
+
+document.getElementById('rightBtn').addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    touchRight = true;
+});
+
+document.getElementById('rightBtn').addEventListener('touchend', (e) => {
+    e.preventDefault();
+    touchRight = false;
+});
+
+document.getElementById('fireBtn').addEventListener('touchstart', (e) => {
+    e.preventDefault();
+    bullets.push({
+        x: player.x + player.width / 2 - 2.5,
+        y: player.y
+    });
+});
+
+// Prevent default touch behavior on the canvas
+canvas.addEventListener('touchstart', (e) => {
+    e.preventDefault();
+});
+
+canvas.addEventListener('touchmove', (e) => {
+    e.preventDefault();
+});
+
+canvas.addEventListener('touchend', (e) => {
+    e.preventDefault();
+});
+
+// Handle canvas click/touch for the "Play Again" button
+function handleCanvasClick(e) {
+    if (gameIsOver) {
+        const rect = canvas.getBoundingClientRect();
+        const x = (e.clientX || e.changedTouches[0].clientX) - rect.left;
+        const y = (e.clientY || e.changedTouches[0].clientY) - rect.top;
+        
+        // Check if click/touch is on the "Play Again" button
+        if (x >= canvas.width / 2 - 60 && x <= canvas.width / 2 + 60 &&
+            y >= canvas.height / 2 + 40 && y <= canvas.height / 2 + 80) {
+            resetGame();
+        }
+    }
+}
+
+canvas.addEventListener('click', handleCanvasClick);
+canvas.addEventListener('touchend', handleCanvasClick);
 
 // Start the game
 gameLoop();

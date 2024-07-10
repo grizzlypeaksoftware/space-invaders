@@ -26,7 +26,7 @@ This project is a modern remake of the iconic Space Invaders arcade game. It fea
 
 1. Clone the repository:
    ```
-   git clone https://github.com/your-username/space-invaders.git
+   git clone https://github.com/grizzlypeaksoftware/space-invaders
    ```
 2. Navigate to the project directory:
    ```

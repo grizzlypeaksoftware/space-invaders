@@ -165,16 +165,16 @@ function drawGameOver() {
     
     ctx.fillStyle = 'white';
     ctx.font = '48px "Press Start 2P"';
-    ctx.fillText('Game Over', canvas.width / 2 - 150, canvas.height / 2 - 50);
+    ctx.fillText('Game Over', canvas.width / 2 - 180, canvas.height / 2 - 50);
     
     ctx.font = '24px "Press Start 2P"';
-    ctx.fillText(`Final Score: ${score}`, canvas.width / 2 - 120, canvas.height / 2 + 10);
+    ctx.fillText(`Final Score: ${score}`, canvas.width / 2 - 150, canvas.height / 2 + 10);
     
     ctx.fillStyle = 'lime';
-    ctx.fillRect(canvas.width / 2 - 60, canvas.height / 2 + 40, 120, 40);
+    ctx.fillRect(canvas.width / 2 - 100, canvas.height / 2 + 40, 250, 40);
     ctx.fillStyle = 'black';
     ctx.font = '20px "Press Start 2P"';
-    ctx.fillText('Play Again', canvas.width / 2 - 50, canvas.height / 2 + 65);
+    ctx.fillText('Play Again', canvas.width / 2 - 70, canvas.height / 2 + 65);
 }
 
 function nextLevel() {

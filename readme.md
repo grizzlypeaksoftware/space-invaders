@@ -34,6 +34,11 @@ This project is a modern remake of the iconic Space Invaders arcade game. It fea
    ```
 3. Open the `index.html` file in your web browser.
 
+### Play Online
+
+You can play the game online without installation by visiting:
+[https://grizzlypeaksoftware.github.io/space-invaders/](https://grizzlypeaksoftware.github.io/space-invaders/)
+
 ## How to Play
 
 - Use the left and right arrow keys to move your spaceship.
